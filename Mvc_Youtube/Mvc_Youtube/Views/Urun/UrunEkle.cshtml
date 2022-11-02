@@ -1,0 +1,42 @@
+﻿@model Mvc_Youtube.Models.TblUrun
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class=" form-group">
+<div>
+    <label>Urun Adı</label>
+    <input type="text" class="form-control" name="UrunAd" required/>
+
+</div>
+<div>
+    <label>Urun Markası</label>
+    <input type="text" class="form-control" name="Marka" required/>
+
+</div>
+    <div>
+    <label>Urun Kategorisi</label>
+    @Html.DropDownListFor(m =>m.TblKategori.KategoriID, (List<SelectListItem>)ViewBag.dgr, new {@class= "form-control"})
+
+</div>
+    <div>
+    <label>Ürün Fiyatı</label>
+    <input type="text" class="form-control" name="Fiyat" />
+
+</div>
+    <div>
+    <label>Ürün Stoku</label>
+    <input type="text" class="form-control" name="Stok" />
+
+</div>
+<div>
+    <button class="btn btn-info" id="btn1">Ürün Ekle</button>
+</div>
+    <script>
+        $('#btn1').click(function (){
+            alert('Ürün Ekleme İşlemi Yapıldı');
+        });
+    </script>
+</form>
+

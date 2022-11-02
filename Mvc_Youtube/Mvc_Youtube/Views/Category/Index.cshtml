@@ -1,0 +1,34 @@
+﻿@using Mvc_Youtube.Models
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TblKategori>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class=" table table-bordered">
+    <tr>
+        <th>Kategori ID</th>
+        <th>Kategori Adı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+
+    </tr>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.KategoriID</th>
+                <td>@ktgr.KategoriAd</td>
+                <td><a href="/Category/Sil/@ktgr.KategoriID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Category/KategoriGetir/@ktgr.KategoriID" class="btn btn-success">Güncelle</a></td>
+                <td>@Html.ActionLink("Sil", "Sil", new {id= ktgr.KategoriID }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten silmek istiyormusunuz...!')"}) </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+<a href="/Category/YeniKategori/" class="btn btn-primary">Yeni Kategori Ekle</a>
+
+
